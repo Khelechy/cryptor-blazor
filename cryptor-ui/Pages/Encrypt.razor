@@ -3,7 +3,9 @@
 <h1>Encrypt</h1>
 
 <EditForm Model="@crypterModel" OnValidSubmit="@EncryptSubmit">
-    
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
     <div class="form-group">
         <label for="Message">Message</label>
         <InputTextArea @bind-Value="crypterModel.message" class="form-control" id="message" />
@@ -20,7 +22,7 @@
 
     <div class="form-group">
         <label for="Result">Result</label>
-        <InputTextArea @bind-Value="@result" class="form-control"/>
+        <InputTextArea @bind-Value="@result" class="form-control" />
     </div>
 
 

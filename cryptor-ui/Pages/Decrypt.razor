@@ -3,6 +3,8 @@
 <h1>Decrypt</h1>
 
 <EditForm Model="@crypterModel" OnValidSubmit="@DecryptSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
     <div class="form-group">
         <label for="Message">Encrypted Message</label>
