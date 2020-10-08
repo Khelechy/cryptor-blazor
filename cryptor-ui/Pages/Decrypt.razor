@@ -1,0 +1,39 @@
+﻿@page "/decrypt"
+
+<h1>Decrypt</h1>
+
+<EditForm Model="@crypterModel" OnValidSubmit="@DecryptSubmit">
+
+    <div class="form-group">
+        <label for="Message">Encrypted Message</label>
+        <InputTextArea @bind-Value="crypterModel.message" class="form-control" id="message" />
+    </div>
+
+    <div class="form-group">
+        <label for="Key">Key</label>
+        <InputText @bind-Value="crypterModel.key" class="form-text" id="key" />
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Dedrypt" />
+
+    <div class="form-group">
+        <label for="Result">Result</label>
+        <InputTextArea @bind-Value="@result" class="form-control" />
+    </div>
+
+
+</EditForm>
+
+@code {
+    private cryptor_ui.Models.CrypterModel crypterModel = new Models.CrypterModel();
+    private cryptor_ui.Service.MessageCrypter crypter = new Service.MessageCrypter();
+
+    public string result;
+
+    private void DecryptSubmit()
+    {
+        result = crypter.Decrypt(crypterModel.message, crypterModel.key);
+    }
+
+
+}

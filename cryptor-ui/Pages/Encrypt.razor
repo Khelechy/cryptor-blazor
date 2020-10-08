@@ -1,0 +1,39 @@
+﻿@page "/encrypt"
+
+<h1>Encrypt</h1>
+
+<EditForm Model="@crypterModel" OnValidSubmit="@EncryptSubmit">
+    
+    <div class="form-group">
+        <label for="Message">Message</label>
+        <InputTextArea @bind-Value="crypterModel.message" class="form-control" id="message" />
+    </div>
+
+    <div class="form-group">
+        <label for="Key">Key</label>
+        <InputText @bind-Value="crypterModel.key" class="form-text" id="key" />
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Encrypt" />
+
+    <div class="form-group">
+        <label for="Result">Result</label>
+        <InputTextArea @bind-Value="@result" class="form-control"/>
+    </div>
+
+
+</EditForm>
+
+@code {
+    private cryptor_ui.Models.CrypterModel crypterModel = new Models.CrypterModel();
+    private cryptor_ui.Service.MessageCrypter crypter = new Service.MessageCrypter();
+
+    public string result;
+
+    private void EncryptSubmit()
+    {
+        result = crypter.Encrypt(crypterModel.message, crypterModel.key);
+    }
+
+
+}
